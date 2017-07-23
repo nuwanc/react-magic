@@ -1,0 +1,236 @@
+.Resizer {
+    background: #000;
+    opacity: .2;
+    z-index: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+}
+.Resizer:hover {
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+}
+.Resizer.horizontal {
+    height: 13px;
+    margin: -5px 0;
+    border-top: 5px solid rgba(255, 255, 255, 0);
+    border-bottom: 5px solid rgba(255, 255, 255, 0);
+    cursor: row-resize;
+    width: 100%;
+}
+.Resizer.horizontal:hover {
+    border-top: 5px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+}
+.Resizer.vertical {
+    width: 13px;
+    margin: 0 -5px;
+    border-left: 5px solid rgba(255, 255, 255, 0);
+    border-right: 5px solid rgba(255, 255, 255, 0);
+    cursor: col-resize;
+}
+.Resizer.vertical:hover {
+    border-left: 5px solid rgba(0, 0, 0, 0.5);
+    border-right: 5px solid rgba(0, 0, 0, 0.5);
+}
+.Resizer.disabled {
+    cursor: not-allowed;
+}
+.Resizer.disabled:hover {
+    border-color: transparent;
+}
+
+.plus {
+    padding: 2px;
+}
+
+.plus::before {
+    content:'+ ';
+    font-size: 17px;
+    cursor: pointer;
+    padding: 2px;  
+}
+
+.minus {
+    padding: 2px;
+}
+.minus::before {
+    content:'- ';
+    font-size: 18px;
+    cursor: pointer;    
+}
+
+.blank {
+    padding-left: 20px;
+}
+
+.SimpleTree {
+	list-style: none;
+    background-color: white;
+	margin-top: 4px;
+    margin-bottom: 4px;
+    padding-left: 20px;
+}
+
+.LazyLoadTree {
+	list-style: none;
+    background-color: white;
+	margin-top: 4px;
+    margin-bottom: 4px;
+    padding-left: 20px;
+}
+
+.node {
+    cursor: pointer;   
+}
+
+.selected {
+    background-color:yellow;
+}
+
+.hidden {
+    display: none;
+}
+
+.doc {
+    overflow-y: auto;
+}
+
+.tree {
+    overflow-y: auto;
+}
+
+.results {
+    padding-top: 5px;
+    overflow-y: scroll;
+}
+
+.highlight {
+    background-color: yellow;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.standard {
+   overflow-y: auto; 
+}
+
+.ssegment {
+  border: 1px solid black;
+  background-color: lightblue;
+  border-radius: 1px;
+  padding: 2px;
+}
+
+.sloop {
+  border: 1px solid black;
+  background-color: lightgray;
+  border-radius: 1px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.scode {
+  border: 1px solid black;
+  background-color: yellow;
+  border-radius: 1px;
+  padding-left: 2px;
+  padding-right: 2px
+}
+
+.selement {
+  border: 1px solid black;
+  background-color: lightgreen;
+  border-radius: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.scomposite {
+  border: 1px solid black;
+  background-color: purple;
+  border-radius: 1px;
+  padding: 2px;
+}
+
+.error::before {
+    content: '\0078';
+	color: red;
+	font-weight: bold;
+	font-style: normal !important;
+}
+
+.schema {
+    max-height: 70vh;
+    overflow-y : auto;
+}
+
+.table {
+	overflow: auto !important;
+    border: 0px solid #000 !important;
+	border-color: #000;
+	background-color: #FFF;
+	border-collapse: collapse !important;
+}
+
+.table th,.table td {
+	border: 1px solid #A9A9A9 !important;
+	background-color: #FFF;
+	padding:4px !important;
+	font-size: 12px !important;
+}
+
+.table th {
+	border: 1px solid #000;
+	background-color: #DDD;
+	font-size: 9pt !important;
+}
+
+.segment {
+	margin-bottom: 5px;
+	white-space: nowrap;
+}
+
+.segment-marker {
+    cursor: pointer
+}
+
+.segment header {
+	font-size: 9pt;
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+.segment div {
+	margin-left: 10px;
+	margin-bottom: 3px;
+	font-size: 9pt !important;
+}
+
+.edit-segment {
+    margin-left: 10px;
+}
+
+.tab-panel {
+    padding-left: 20px;
+}
+
+.title {
+    font-size: 9pt !important;
+    font-weight: 700 !important;
+    border: 2px solid #A9A9A9 !important;
+    background-color: #D3D3D3 !important;
+    padding: 2pt !important;
+    color: #000 !important;
+    margin-bottom: 12px !important;
+    margin-top: 12px !important;
+}

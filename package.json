@@ -1,0 +1,29 @@
+{
+  "name": "react-splitpane",
+  "version": "0.1.0",
+  "private": true,
+  "proxy" : "http://localhost:3004",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "bootstrap": "^3.3.7",
+    "classnames": "^2.2.5",
+    "font-awesome": "^4.7.0",
+    "jspath": "^0.3.4",
+    "normalize.css": "^7.0.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-split-pane": "^0.1.65",
+    "react-tabs": "^1.0.0",
+    "string.prototype.startswith": "^0.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.10"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "json-server" : "json-server --watch db/db.json --port 3004 --routes db/routes.json"
+  }
+}
