@@ -18,15 +18,26 @@ class Store {
 		}
 	}
 
-	getErrorList(size) {
+	getErrorList(size, path) {
 		let errors = [];
-		if (this.errors && this.errorsOnDisplay.length === 0) {
+		/*if (this.errors && this.errorsOnDisplay.length === 0) {
 			Object.keys(this.errors).forEach((key) => {
 				errors = errors.concat(this.errors[key]);
 			});
 			this.errorsOnDisplay = errors.slice(0, size);
 		}
-		return this.errorsOnDisplay;
+		return this.errorsOnDisplay;*/
+		if (this.errors && path) {
+			this.lookupErrorList(path);
+			return this.errorList;
+		} else {
+			if (this.errors) {
+				Object.keys(this.errors).forEach((key) => {
+					errors = errors.concat(this.errors[key]);
+				});
+				return errors.slice(0, size);
+			}
+		}
 	}
 
 	lookupErrorSegment(path) {
@@ -36,12 +47,12 @@ class Store {
 				let location = error.location;
 				let paths = location.split("/");
 				let last = paths[paths.length - 1];
-				if (!isNaN(last)) { 
+				if (!isNaN(last)) {
 					location = location.substring(0, location.lastIndexOf("/"))
 				}
 				if (path === location) {
 					return {
-						text : error.message
+						text: error.message
 					}
 				} else {
 					continue;
@@ -76,7 +87,7 @@ class Store {
 		} else {
 			return false;
 		}*/
-		if (this.errors){
+		if (this.errors) {
 			return this.errors[path];
 		} else {
 			return false;
