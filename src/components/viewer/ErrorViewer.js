@@ -4,6 +4,7 @@ import Store from '../../utils/Store';
 import Loading from '../ui/Loading';
 
 class ErrorViewer extends Component {
+    static DISPLAY_LIST_SIZE = 1000;
 
     constructor(props) {
         super(props);
@@ -99,19 +100,27 @@ class ErrorViewer extends Component {
         }
         
         let content = null;
+        let message = null
+
         if (this.state.loading) {
             content = <Loading textAlign={'center'} height={ulStyle.height} text={'Validating the message'}/>
         } else {
             if (Store.errors !== null) {
-                content = Store.getErrorList(500,this.props.selectedServerNode).map((v,i)=>{
+                content = Store.getErrorList(1000,this.props.selectedServerNode).map((v,i)=>{
                     return <ErrorResult key={v.location} node={v} onClickResult={this.onErrorViewerClick} selected={this.state.selected === v.location}/>
                 })
+                if (Store.totalErrors > ErrorViewer.DISPLAY_LIST_SIZE) {
+                    message = `Showing first ${ErrorViewer.DISPLAY_LIST_SIZE} of ${Store.totalErrors} Validation Errors.`;
+                }
+                if (Store.totalErrors === 0) {
+                    message = `No Validation Errors.`;
+                }
             }
         }
 
         return (
             <div>
-                <button onClick={this.handleValidateClick}>Validate</button>
+                <span style={{marginLeft:'10px'}}><button onClick={this.handleValidateClick}>Validate</button><span style={{marginLeft:'10px'}}>{message}</span></span>
                 <ol className="results" style={ulStyle}>
                     {content}
                 </ol>

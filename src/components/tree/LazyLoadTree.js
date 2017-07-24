@@ -45,9 +45,9 @@ class LazyLoadTree extends Component {
                             })
                         })
                     }
-                    let content = <ul style={{ maxHeight: 220, overflowY: 'auto' }}>{codes}</ul>
+                    let content = <ul style={{ maxHeight: 220, overflowY: 'auto',listStyleType: 'square' }}>{codes}</ul>
                     if (this.props.openModal) {
-                        this.props.openModal(false, { title: details.name + " - " + details.description, content: content });
+                        this.props.openModal(false, { title: 'Element ID '+details.name.split(":")[1] + " - " + details.description, content: content });
                     } else {
                         this.setState(() => {
                             return {
@@ -87,7 +87,7 @@ class LazyLoadTree extends Component {
 
 
         selectedObj = {
-            "node": true,
+            "tree-node": true,
         }
         //if root, show immediate childNode
         let root;
@@ -138,7 +138,7 @@ class LazyLoadTree extends Component {
                     info = <span className={classNames(selectedObj)} >&nbsp;<b>{this.props.node.description || this.props.node.name}</b> {this.props.node.requirementType ? <span>{this.props.node.requirementType} - {this.props.node.maxOccurs == -1 ? 'Unbound' : this.props.node.maxOccurs}</span> : <span> </span>} </span>
                 } else if (name.startsWith("composite")) {
                     root = <span onClick={this.toggle} className={classNames(classObj)}></span>;
-                    icon = <span className="scomposite">C</span>
+                    icon = <span className="scomposite">M</span>
                     if ( this.props.selectedElement !== null && typeof this.props.selectedElement === "string") {
                         let keys = this.props.selectedElement.split("_");
                         selectedObj["highlight"] = keys[0] == this.props.node.position - 1

@@ -45,7 +45,7 @@ class Modal extends Component {
         if (this.props.params) {
             if (this.props.params['segment']) {
                 let segment = this.props.params['segment'];
-                title = segment.name;
+                title = segment.name + " - "+segment.schema.description;
                 content = this.showSegmentTab(segment,this.props.params['index'],this.props.params['cIndex']);
             }
             if (this.props.params['msg']) {
@@ -59,7 +59,7 @@ class Modal extends Component {
             }
             if (this.props.params['schema']) {
                 let segment = this.props.params['segment'];
-                title = "Specification for:"+segment.name+" - "+segment.schema.description;
+                title = "Specification for : "+segment.name+" - "+segment.schema.description;
                 content = this.showSchema(segment);
 
             }

@@ -84,7 +84,11 @@
 }
 
 .node {
-    cursor: pointer;   
+    cursor: pointer;
+}
+
+.tree-node {
+    cursor: default;
 }
 
 .selected {
@@ -157,7 +161,7 @@
 
 .scomposite {
   border: 1px solid black;
-  background-color: purple;
+  background-color: #FED8B1;
   border-radius: 1px;
   padding: 2px;
 }

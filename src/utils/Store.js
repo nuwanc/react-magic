@@ -7,6 +7,7 @@ class Store {
 		this.delimiters = [];
 		this.errorsOnDisplay = [];
 		this.errorList = [];
+		this.totalErrors = 0;
 	}
 
 	processDelimiters() {
@@ -20,14 +21,15 @@ class Store {
 
 	getErrorList(size, path) {
 		let errors = [];
-		/*if (this.errors && this.errorsOnDisplay.length === 0) {
+		if (this.errors && this.errorsOnDisplay.length === 0) {
 			Object.keys(this.errors).forEach((key) => {
 				errors = errors.concat(this.errors[key]);
 			});
+			this.totalErrors = errors.length;
 			this.errorsOnDisplay = errors.slice(0, size);
 		}
-		return this.errorsOnDisplay;*/
-		if (this.errors && path) {
+		return this.errorsOnDisplay;
+		/*if (this.errors && path) {
 			this.lookupErrorList(path);
 			return this.errorList;
 		} else {
@@ -37,7 +39,7 @@ class Store {
 				});
 				return errors.slice(0, size);
 			}
-		}
+		}*/
 	}
 
 	lookupErrorSegment(path) {

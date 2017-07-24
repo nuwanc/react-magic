@@ -19,9 +19,9 @@ class SimpleTree extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.selected === this.props.node.path) {
+        /*if (this.props.selected === this.props.node.path) {
             ReactDOM.findDOMNode(this).scrollIntoView(true);
-        }
+        }*/
     }
 
     toggle() {

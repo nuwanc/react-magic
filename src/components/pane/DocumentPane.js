@@ -37,8 +37,8 @@ class DocumentPane extends Component {
         return (
             <Tabs selectedIndex={this.state.tabIndex} onSelect={this.selectTab}>
                 <TabList>
-                    <Tab>Html</Tab>
-                    <Tab>Edit</Tab>
+                    <Tab><b>Html</b></Tab>
+                    <Tab><b>Edit</b></Tab>
                     {/*<Tab>Text</Tab>*/}
                 </TabList>
 

@@ -26,9 +26,9 @@ class BottomPane extends Component {
         return (
             <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.selectTab(tabIndex)}>
                 <TabList>
-                    <Tab>Specification</Tab>
-                    <Tab>Errors</Tab>
-                    <Tab>Find</Tab>
+                    <Tab><b>Specification</b></Tab>
+                    <Tab><b>Errors</b></Tab>
+                    <Tab><b>Find</b></Tab>
                 </TabList>
 
                 <TabPanel forceRender={true}>
