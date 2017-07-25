@@ -132,7 +132,9 @@ class LazyLoadTree extends Component {
                 details = EdiHelper.getSchemaDetails(name);
 
                 if (name.startsWith("segment")) {
-                    root = <span onClick={this.toggle} className={classNames(classObj)}></span>;
+                    if (this.props.toggleOnLoad !== true) {
+                        root = <span onClick={this.toggle} className={classNames(classObj)}></span>;
+                    }
                     icon = <span className="ssegment">S</span>
                     //{'Segment ID '}{this.props.node.name.split(":")[1]} - 
                     info = <span className={classNames(selectedObj)} >&nbsp;<b>{this.props.node.description || this.props.node.name}</b> {this.props.node.requirementType ? <span>{this.props.node.requirementType} - {this.props.node.maxOccurs == -1 ? 'Unbound' : this.props.node.maxOccurs}</span> : <span> </span>} </span>
@@ -147,7 +149,7 @@ class LazyLoadTree extends Component {
                 } else if (name.startsWith("loop")) {
                     root = <span onClick={this.toggle} className={classNames(classObj)}></span>;
                     icon = <span className="sloop">L</span>
-                    info = <span className={classNames(selectedObj)} >&nbsp;<b>{this.props.node.description || this.props.node.name.split(":")[1]}</b> {this.props.node.requirementType ? <span>{this.props.node.requirementType} - {this.props.node.maxOccurs == -1 ? 'Unbound' : this.props.node.maxOccurs}</span> : <span> </span>} </span>
+                    info = <span className={classNames(selectedObj)} >&nbsp;<b>{details.element[0].description || this.props.node.name.split(":")[1]}</b> {this.props.node.requirementType ? <span>{this.props.node.requirementType} - {this.props.node.maxOccurs == -1 ? 'Unbound' : this.props.node.maxOccurs}</span> : <span> </span>} </span>
                 } else if (name.startsWith("transaction")) {
                     root = <span onClick={this.toggle} className={classNames(classObj)}></span>;
                     icon = <i className={'fa fa-file-o'} aria-hidden="true">&nbsp;</i>
