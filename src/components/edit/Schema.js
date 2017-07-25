@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LazyLoadTree from '../tree/LazyLoadTree';
 import Store from '../../utils/Store';
+import * as Utilities from '../../utils/Utilities';
 
 class Schema extends Component {
 
@@ -24,8 +25,13 @@ class Schema extends Component {
         let node = this.props.segment.schema;
         let elements = this.props.segment.element.map((v, i) => {
             if (!Array.isArray(v)) {
-                let delimiter = Store.delimiters[1]
-                return <span key={i}><span>{delimiter}</span><span onClick={this.onElementClick.bind(null,i)} className={ this.state.selectedElement === i ? "highlight pointer" : "pointer"}>{v}</span></span>
+                let delimiter = Store.delimiters[1];
+                if (Utilities.isNotEmptyString(v) ) {
+                    return <span key={i}><span>{delimiter}</span><span onClick={this.onElementClick.bind(null,i)} className={ this.state.selectedElement === i ? "highlight pointer" : "pointer"}>{v}</span></span>
+                } else {
+                    return <span key={i}><span>{delimiter}</span><span onClick={this.onElementClick.bind(null,i)} className={ this.state.selectedElement === i ? "highlight pointer" : "pointer"}><span className="glyphicon glyphicon-eye-open"></span></span></span>
+                }
+                
             } else {
                 let composite = [];
                 v.forEach((c,ci)=>{
