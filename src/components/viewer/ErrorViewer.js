@@ -111,6 +111,8 @@ class ErrorViewer extends Component {
                 })
                 if (Store.totalErrors > ErrorViewer.DISPLAY_LIST_SIZE) {
                     message = `Showing first ${ErrorViewer.DISPLAY_LIST_SIZE} of ${Store.totalErrors} Validation Errors.`;
+                } else {
+                    message = `${Store.totalErrors} Validation Errors.`;
                 }
                 if (Store.totalErrors === 0) {
                     message = `No Validation Errors.`;

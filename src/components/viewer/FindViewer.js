@@ -162,7 +162,7 @@ class FindViewer extends Component {
 
         return (
             <div>
-                <span>
+                <span style={{marginLeft:'10px'}}>
                     Find in Edit View : <input type="text" name="find" value={this.state.text} onChange={this.handleChange} onKeyPress={this.handleKeyPress} /> <button onClick={this.handleFindClick}>Find</button>&nbsp;
                     Options:  <input type="checkbox" name="exact" checked={this.state.exact} onChange={this.handleInputChange} /> Match whole word <input type="checkbox" name="matchCase" checked={this.state.matchCase} onChange={this.handleInputChange} /> Match case
                 </span>

@@ -73,12 +73,12 @@ class EditViewer extends Component {
                 if (this.props.selectedNode.split('.').length > 3 || !Store.large) {
                     json = JSPath.apply(this.props.selectedNode, Store.message);
                     segments = EdiHelper.getSegments(json, false).map((v, i) => {
-                        return <Segment key={v.path} segment={v} type={this.props.docType} selectedSegment={v.path === this.props.selectedSegment} validate={this.props.validate} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} />
+                        return <Segment key={v.path} segment={v} type={this.props.docType} selectedSegment={v.path === this.props.selectedSegment} validate={this.props.validate} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} scrollIntoView={this.props.scrollIntoView}/>
                     })
                 } else {
                     json = JSPath.apply(this.props.selectedNode, Store.message);
                     segments = EdiHelper.getSegments(json, true).map((v, i) => {
-                        return <Segment key={v.path} segment={v} type={this.props.docType} selectedSegment={v.path === this.props.selectedSegment} validate={this.props.validate} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} />
+                        return <Segment key={v.path} segment={v} type={this.props.docType} selectedSegment={v.path === this.props.selectedSegment} validate={this.props.validate} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} scrollIntoView={this.props.scrollIntoView}/>
                     })
                     popup = <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} params={{ msg: "Too many transaction to display. Please select individual transaction." }}></Modal>
                 }

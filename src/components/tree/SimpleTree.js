@@ -19,9 +19,9 @@ class SimpleTree extends Component {
     }
 
     componentDidUpdate() {
-        /*if (this.props.selected === this.props.node.path) {
+        if (this.props.selected === this.props.node.path && this.props.scrollIntoView === true) {
             ReactDOM.findDOMNode(this).scrollIntoView(true);
-        }*/
+        }
     }
 
     toggle() {
@@ -35,7 +35,7 @@ class SimpleTree extends Component {
 
         if (this.props.node.childNodes != null) {
             childNodes = this.props.node.childNodes.map((node, index) => {
-                return <li key={index}><SimpleTree node={node} selected={this.props.selected} onTreeNodeSelect={this.props.onTreeNodeSelect} validate={this.props.validate}/></li>
+                return <li key={index}><SimpleTree node={node} selected={this.props.selected} onTreeNodeSelect={this.props.onTreeNodeSelect} validate={this.props.validate} scrollIntoView={this.props.scrollIntoView}/></li>
             });
 
             classObj = {

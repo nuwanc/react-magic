@@ -27,7 +27,8 @@ class App extends Component {
       validate: false,
       path: null,
       schemaLoading: true,
-      snode: null
+      snode: null,
+      scrollIntoView: false
     };
 
     this.onTreeNodeClick = this.onTreeNodeClick.bind(this);
@@ -75,7 +76,8 @@ class App extends Component {
         node: node,
         tabIndex: -1,
         segment: null,
-        snode: snode
+        snode: snode,
+        scrollIntoView: false
       }
     });
   }
@@ -92,13 +94,14 @@ class App extends Component {
     this.setState(() => {
       return {
         node: EdiHelper.serverPathToJsonPath(segment),
-        snode : EdiHelper.segmentPathToRootPath(segment)
+        snode : EdiHelper.segmentPathToRootPath(segment),
+        scrollIntoView: true
       }
     }, () => {
       this.setState(() => {
         return {
           segment: segment,
-          tabIndex: tabIndex,
+          tabIndex: tabIndex
         }
       })
     });
@@ -118,7 +121,8 @@ class App extends Component {
       return {
         path: path,
         segment : path,
-        tabIndex: tabIndex
+        tabIndex: tabIndex,
+        scrollIntoView: false
       }
     })
   }
@@ -186,10 +190,10 @@ class App extends Component {
           <SplitPane split="horizontal" defaultSize={'90vh'} minSize={50} maxSize={-50} onChange={(size) => { this.resizeTopPane(size) }} primary="second">
             <div id="outer"></div>
             <SplitPane split="vertical" minSize={150} maxSize={300} defaultSize={300}>
-              <div><TreePane onTreeNodeClick={this.onTreeNodeClick} treeHeight={this.state.treeHeight} showOuter={isOuter} validate={this.state.validate} selectNode={this.state.node} /></div>
+              <div><TreePane onTreeNodeClick={this.onTreeNodeClick} treeHeight={this.state.treeHeight} showOuter={isOuter} validate={this.state.validate} selectNode={this.state.node} scrollIntoView={this.state.scrollIntoView}/></div>
               <div id="rightPane">
                 <SplitPane defaultSize="70%" split="horizontal" onChange={(size) => { this.resizePane(size) }}>
-                  <div style={{ width: '100%' }} id="docPane"><DocumentPane selectedNode={this.state.node} selectedServerNode={this.state.snode} selectedSegment={this.state.segment} tabToSelect={this.state.tabIndex} openModal={this.openModal} viewerHeight={this.state.viewerHeight} validate={this.state.validate} onSegmentClick={this.onSegmentClick} schemaLoading={this.state.schemaLoading} onCtrlNumberClick={this.onCtrlNumberClick}/></div>
+                  <div style={{ width: '100%' }} id="docPane"><DocumentPane selectedNode={this.state.node} selectedServerNode={this.state.snode} selectedSegment={this.state.segment} tabToSelect={this.state.tabIndex} openModal={this.openModal} viewerHeight={this.state.viewerHeight} validate={this.state.validate} onSegmentClick={this.onSegmentClick} schemaLoading={this.state.schemaLoading} onCtrlNumberClick={this.onCtrlNumberClick} scrollIntoView={this.state.scrollIntoView}/></div>
                   <div style={{ width: '100%' }}><BottomPane onViewerClick={this.onViewerClick} onValidateClick={this.onValidateClick} onSchemaLoad={this.onSchemaLoad} selectedNode={this.state.node} selectedServerNode={this.state.snode} openModal={this.openModal} viewerHeight={this.state.viewerHeight} selectedPath={this.state.path} messageId={this.props.messageId}/></div>
                 </SplitPane>
               </div>
@@ -202,10 +206,10 @@ class App extends Component {
       return (
         <div>
           <SplitPane split="vertical" minSize={150} maxSize={300} defaultSize={300}>
-            <div><TreePane onTreeNodeClick={this.onTreeNodeClick} treeHeight={this.state.treeHeight} showOuter={isOuter} validate={this.state.validate} selectNode={this.state.node} /></div>
+            <div><TreePane onTreeNodeClick={this.onTreeNodeClick} treeHeight={this.state.treeHeight} showOuter={isOuter} validate={this.state.validate} selectNode={this.state.node} scrollIntoView={this.state.scrollIntoView}/></div>
             <div id="rightPane">
               <SplitPane defaultSize="70%" split="horizontal" onChange={(size) => { this.resizePane(size) }}>
-                <div style={{ width: '100%' }} id="docPane"><DocumentPane selectedNode={this.state.node} selectedServerNode={this.state.snode} selectedSegment={this.state.segment} tabToSelect={this.state.tabIndex} openModal={this.openModal} viewerHeight={this.state.viewerHeight} validate={this.state.validate} onSegmentClick={this.onSegmentClick} schemaLoading={this.state.schemaLoading} onCtrlNumberClick={this.onCtrlNumberClick}/></div>
+                <div style={{ width: '100%' }} id="docPane"><DocumentPane selectedNode={this.state.node} selectedServerNode={this.state.snode} selectedSegment={this.state.segment} tabToSelect={this.state.tabIndex} openModal={this.openModal} viewerHeight={this.state.viewerHeight} validate={this.state.validate} onSegmentClick={this.onSegmentClick} schemaLoading={this.state.schemaLoading} onCtrlNumberClick={this.onCtrlNumberClick} scrollIntoView={this.state.scrollIntoView}/></div>
                 <div style={{ width: '100%' }}><BottomPane onViewerClick={this.onViewerClick} onValidateClick={this.onValidateClick} onSchemaLoad={this.onSchemaLoad} selectedNode={this.state.node} selectedServerNode={this.state.snode} openModal={this.openModal} viewerHeight={this.state.viewerHeight} selectedPath={this.state.path} messageId={this.props.messageId}/></div>
               </SplitPane>
             </div>

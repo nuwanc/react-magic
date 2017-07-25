@@ -17,15 +17,15 @@ class Segment extends Component {
     }
 
     componentDidUpdate() {
-        /*if (this.props.selectedSegment) {
+        if (this.props.selectedSegment && this.props.scrollIntoView === true) {
             ReactDOM.findDOMNode(this).scrollIntoView(true);
-        }*/
+        }
     }
 
     componentDidMount() {
-        /*if (this.props.selectedSegment) {
+        if (this.props.selectedSegment && this.props.scrollIntoView === true) {
             ReactDOM.findDOMNode(this).scrollIntoView(true);
-        }*/
+        }
     }
 
     onSegmentClick(segment) {

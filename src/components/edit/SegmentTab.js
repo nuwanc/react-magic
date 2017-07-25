@@ -56,9 +56,9 @@ class SegmentTab extends Component {
                         innerTabs.push(<Tab key={this.props.segment.name + (i + 1) + (i1 + 1)}><b>{this.props.segment.name + (i + 1) + (i1 + 1)}</b></Tab>)
                         innerTabPanels.push(
                             <TabPanel key={this.props.segment.name + (i + 1) + (i1 + 1)} className="tab-panel">
-                                <div><b>Value</b> : {innerSelect}</div>
-                                <div><b>Standard</b> : Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div>
-                                <div><b>Description</b> : {details.description} ({v.requirementType})</div>
+                                <div><b>Value</b>: {innerSelect}</div>
+                                <div><b>Standard</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div>
+                                <div><b>Description</b>: {details.description} ({v.requirementType})</div>
                             </TabPanel>
                         )
                         select = <Tabs defaultIndex={cIndex}><TabList>{innerTabs}</TabList>{innerTabPanels}</Tabs>
@@ -77,12 +77,12 @@ class SegmentTab extends Component {
             if (isComposite) {
                 dataSection = select;
             } else {
-               dataSection  =  <div><div><b>Value</b> : {select}</div><div><b>Standard</b> : Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div></div>
+               dataSection  =  <div><div><b>Value</b>: {select}</div><div><b>Standard</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div></div>
             } 
             tabPanels.push(
                 <TabPanel key={this.props.segment.name + (i + 1)} className="tab-panel">
                     {dataSection}
-                    <div><b>Description</b> : {details.description} ({v.requirementType})</div>
+                    <div><b>Description</b>: {details.description} ({v.requirementType})</div>
                 </TabPanel>);
         })
         return <Tabs defaultIndex={index}><TabList>{tabs}</TabList>{tabPanels}</Tabs>

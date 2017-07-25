@@ -112,7 +112,7 @@ class TreePane extends Component {
 
         return (
             <div className="tree" style={divStyle}>
-                {!this.state.tree ? <Loading /> : <SimpleTree node={this.state.tree} selected={this.state.selected} onTreeNodeSelect={this.onTreeNodeSelect} validate={this.props.validate}/>}
+                {!this.state.tree ? <Loading /> : <SimpleTree node={this.state.tree} selected={this.state.selected} onTreeNodeSelect={this.onTreeNodeSelect} validate={this.props.validate} scrollIntoView={this.props.scrollIntoView}/>}
             </div>
         )
     }

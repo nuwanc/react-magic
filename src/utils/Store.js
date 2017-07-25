@@ -89,7 +89,20 @@ class Store {
 		} else {
 			return false;
 		}*/
-		if (this.errors) {
+		if (this.errors && path) {
+			let parts = path.split("/");
+			if (parts.length === 1 || parts.length === 2) {
+				let keys = Object.keys(this.errors);
+				for (let i=0, length = keys.length; i < length; i++) {
+					let key = keys[i];
+					if ( key.split("/").length > 1 && parts.length === 1) {
+						return true;
+					}
+					if (key.split("/").length > 2 && parts.length === 2) {
+						return true;
+					}
+				}
+			}
 			return this.errors[path];
 		} else {
 			return false;
