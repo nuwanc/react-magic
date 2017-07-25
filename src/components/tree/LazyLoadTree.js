@@ -74,11 +74,18 @@ class LazyLoadTree extends Component {
     render() {
         let classObj;
         let selectedObj;
+        let codeObj;
 
         classObj = {
             "minus": this.state.visible,
             "plus": !this.state.visible
         };
+
+        codeObj = {
+            "glyphicon" : true,
+            "glyphicon-open" : true,
+            "pointer" : true
+        }
 
         let style;
         if (!this.state.visible) {
@@ -155,12 +162,12 @@ class LazyLoadTree extends Component {
                     icon = <i className={'fa fa-file-o'} aria-hidden="true">&nbsp;</i>
                     info = <span className={classNames(selectedObj)} >&nbsp;<b>{this.props.node.description || this.props.node.name}</b> {this.props.node.requirementType ? <span>{this.props.node.requirementType} - {this.props.node.maxOccurs == -1 ? 'Unbound' : this.props.node.maxOccurs}</span> : <span> </span>} </span>
                 } else if (name.startsWith("code")) {
-                    root = <span onClick={this.toggle} className={classNames(classObj)}></span>;
+                    root = <span onClick={this.toggle} className={classNames(codeObj)}></span>;
                     icon = <span className="scode">C</span>
                     selectedObj["highlight"] = this.props.selectedElement === this.props.node.position - 1
                     info = <span className={classNames(selectedObj)} >&nbsp;<b>{details.description || this.props.node.name}</b> {this.props.node.requirementType && details ? <span>{'Element ID '}{this.props.node.name.split(":")[1]} - {this.props.node.requirementType} - {details.dataType} -  {details.minLength} / {details.maxLength}</span> : <span> </span>} </span>
                 } else if (name.startsWith("mpcode")) {
-                    root = <span onClick={this.toggle} className={classNames(classObj)}></span>;
+                    root = <span onClick={this.toggle} className={classNames(codeObj)}></span>;
                     icon = <span className="scode">MC</span>
                     selectedObj["highlight"] = this.props.selectedElement === this.props.node.position - 1
                     info = <span className={classNames(selectedObj)} >&nbsp;<b>{details.description || this.props.node.name}</b> {this.props.node.requirementType && details ? <span>{'Element ID '}{this.props.node.name.split(":")[1]} - {this.props.node.requirementType} - {details.dataType} -  {details.minLength} / {details.maxLength}</span> : <span> </span>} </span>
