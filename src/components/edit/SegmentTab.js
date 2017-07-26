@@ -73,17 +73,27 @@ class SegmentTab extends Component {
                 
             }
             tabs.push(<Tab key={this.props.segment.name + (i + 1)}><b>{this.props.segment.name + (i + 1)}</b></Tab>);
-            let dataSection;
+            /*let dataSection = [];
             if (isComposite) {
-                dataSection = select;
+                dataSection.push(<div><b>Description</b>: {details.description} ({v.requirementType})</div>);
+                dataSection.push(select);
             } else {
-               dataSection  =  <div><div><b>Value</b>: {select}</div><div><b>Standard</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div></div>
-            } 
-            tabPanels.push(
+               dataSection.push(<div><div><b>Value</b>: {select}</div><div><b>Standard</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div></div>);
+               dataSection.push(<div><b>Description</b>: {details.description} ({v.requirementType})</div>);
+            }*/
+            if (isComposite) {
+               tabPanels.push(
                 <TabPanel key={this.props.segment.name + (i + 1)} className="tab-panel">
-                    {dataSection}
+                    <div><b>Description</b>: {details.description} ({v.requirementType})</div>
+                    {select}
+                </TabPanel>); 
+            } else {
+                tabPanels.push(
+                <TabPanel key={this.props.segment.name + (i + 1)} className="tab-panel">
+                    <div><div><b>Value</b>: {select}</div><div><b>Standard</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div></div>
                     <div><b>Description</b>: {details.description} ({v.requirementType})</div>
                 </TabPanel>);
+            }
         })
         return <Tabs defaultIndex={index}><TabList>{tabs}</TabList>{tabPanels}</Tabs>
     }

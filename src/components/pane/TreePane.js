@@ -52,7 +52,12 @@ class TreePane extends Component {
 
                     v1["transaction"].forEach((v2,i2)=>{
                         let st = {};
-                        st.title = v2.n;
+                        if (v2.ST) {
+                            let element = v2.ST.e;
+                            st.title = element[0]+"-"+element[1];
+                        } else {
+                            st.title = v2.n;
+                        }
                         st.path = v2.j;
                         st.spath = v2.p;
                         st.icon = "fa fa-file-o fa-stack-1x";

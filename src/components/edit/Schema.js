@@ -13,6 +13,21 @@ class Schema extends Component {
         this.onElementClick = this.onElementClick.bind(this);
     }
 
+    componentDidMount() {
+        let elements = this.props.segment.element;
+        for (let i = 0, length = elements.length; i < length; i++) {
+            let element = elements[i];
+            if (Utilities.isNotEmptyArrayOrString(element)) {
+                this.setState(()=>{
+                    return {
+                        selectedElement : i
+                    }
+                });
+                break;
+            }
+        }
+    }
+
     onElementClick(i) {
         this.setState(()=>{
             return {
@@ -52,7 +67,7 @@ class Schema extends Component {
             <div className="schema">
                 <p><b>Location</b>: {this.props.segment.path}</p>
                 <p><b>Content</b>: {this.props.segment.name}{elements}</p>
-                <p><LazyLoadTree node={node} root={false} toggleOnLoad={true} selectedElement={this.state.selectedElement}/></p>
+                <div><LazyLoadTree node={node} root={false} toggleOnLoad={true} selectedElement={this.state.selectedElement}/></div>
             </div>
         );
     }
