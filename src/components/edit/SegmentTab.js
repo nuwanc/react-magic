@@ -1,16 +1,51 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import * as EdiHelper from '../../utils/EdiHelper';
+import Store from '../../utils/Store';
+import * as Utilities from '../../utils/Utilities';
 
 class SegmentTab extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            selectedElement : 0
+        };
+        this.onElementClick = this.onElementClick.bind(this);
+        this.selectTab = this.selectTab.bind(this);
+    }
 
     renderOption(option) {
         return option.value + "=" + option.description;
     }
 
+    onElementClick(i) {
+        this.setState(()=>{
+            return {
+                selectedElement : i
+            }
+        });
+    }
+
+    selectTab(tabIndex) {
+        this.setState(()=>{
+            return {
+                selectedElement : tabIndex
+            }
+        });
+    }
+
+    componentDidMount() {
+        this.setState(()=>{
+            return {
+                selectedElement : this.props.index
+            }
+        });
+    }
+    
+
     render() {
         let node = this.props.segment.schema;
-        let index = this.props.index;
         let cIndex = this.props.cIndex;
         if (isNaN(cIndex)){
             cIndex = 0;
@@ -73,14 +108,7 @@ class SegmentTab extends Component {
                 
             }
             tabs.push(<Tab key={this.props.segment.name + (i + 1)}><b>{this.props.segment.name + (i + 1)}</b></Tab>);
-            /*let dataSection = [];
-            if (isComposite) {
-                dataSection.push(<div><b>Description</b>: {details.description} ({v.requirementType})</div>);
-                dataSection.push(select);
-            } else {
-               dataSection.push(<div><div><b>Value</b>: {select}</div><div><b>Standard</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div></div>);
-               dataSection.push(<div><b>Description</b>: {details.description} ({v.requirementType})</div>);
-            }*/
+           
             if (isComposite) {
                tabPanels.push(
                 <TabPanel key={this.props.segment.name + (i + 1)} className="tab-panel">
@@ -95,7 +123,39 @@ class SegmentTab extends Component {
                 </TabPanel>);
             }
         })
-        return <Tabs defaultIndex={index}><TabList>{tabs}</TabList>{tabPanels}</Tabs>
+
+        let elements = this.props.segment.element.map((v, i) => {
+            if (!Array.isArray(v)) {
+                let delimiter = Store.delimiters[1];
+                if (Utilities.isNotEmptyString(v) ) {
+                    return <span key={i}><span>{delimiter}</span><span onClick={this.onElementClick.bind(null,i)} className={ this.state.selectedElement === i ? "highlight pointer" : "pointer"}>{v}</span></span>
+                } else {
+                    return <span key={i}><span>{delimiter}</span><span onClick={this.onElementClick.bind(null,i)} className={ this.state.selectedElement === i ? "highlight pointer" : "pointer"}><span className="glyphicon glyphicon-eye-open"></span></span></span>
+                }
+                
+            } else {
+                let composite = [];
+                v.forEach((c,ci)=>{
+                    let key = i+"_"+ci;
+                    if ( ci === 0) {
+                        let delimiter = Store.delimiters[1];
+                        composite.push(<span key={key}><span>{delimiter}</span><span onClick={this.onElementClick.bind(null,key)} className={ this.state.selectedElement === key ? "highlight pointer" : "pointer"}>{c}</span></span>)
+                    } else {
+                        let delimiter = Store.delimiters[2];
+                        composite.push(<span className="pointer" key={key}><span>{delimiter}</span>{c}</span>)
+                    }
+                })
+                return composite;
+            }
+        });
+
+        return (
+            <div>
+                <p><b>Location</b>: {this.props.segment.path}</p>
+                <p><b>Content</b>: {this.props.segment.name}{elements}</p>
+                <Tabs selectedIndex={this.state.selectedElement} onSelect={this.selectTab}><TabList>{tabs}</TabList>{tabPanels}</Tabs>
+            </div>
+        )
     }
 }
 

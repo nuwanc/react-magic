@@ -13,10 +13,6 @@ class Transaction extends Component {
                 case "loop":
                     return <Loop node={v} key={i} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick}/>
                 case "list":
-                    /*let segments = v.c.map((v,i)=>{
-                        return <Segment node={v} key={i} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick}/>
-                    })
-                    return segments;*/
                     return <SegmentList node={v} key={i} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick}/>
                 case "loop-list":
                     let loops = v.c.map((v,i)=>{

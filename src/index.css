@@ -132,6 +132,16 @@
   padding: 2px;
 }
 
+.panel-segment {
+    border-color:lightblue;
+}
+
+.panel-segment>.panel-heading {
+    color: #000;
+    background-color:lightblue;
+    border-color:lightblue;
+}
+
 .sloop {
   border: 1px solid black;
   background-color: lightgray;
@@ -140,6 +150,16 @@
   padding-right: 3px;
   padding-top: 2px;
   padding-bottom: 2px;
+}
+
+.panel-loop {
+    border-color:lightgray;
+}
+
+.panel-loop>.panel-heading {
+    color: #000;
+    background-color:lightgray;
+    border-color:lightgray;
 }
 
 .scode {
