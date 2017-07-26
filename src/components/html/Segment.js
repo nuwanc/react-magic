@@ -45,7 +45,7 @@ class Segment extends Component {
         return (
             <div style={{paddingLeft:'20px',paddingRight:'20px'}}>
                 <div className="panel panel-segment">
-                    <div className="panel-heading"><b>{segment.schema.description}</b></div>
+                    <div className="panel-heading"><b>{segment.schema.description}</b><span className="glyphicon glyphicon-link pull-right pointer" onClick={this.onSegmentClick.bind(null,segment)}></span></div>
                         <div className="panel-body">
                             {elements}
                         </div>
