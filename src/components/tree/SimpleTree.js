@@ -51,7 +51,6 @@ class SimpleTree extends Component {
         }
 
         selectedObj = {
-            "fa": true,
             "node": true,
             "selected": this.props.selected === this.props.node.path
             
@@ -59,7 +58,7 @@ class SimpleTree extends Component {
         
         let error;
         if (this.props.validate === false) {
-            error = 'fa';
+            error = '';
         } else {
             error = Store.lookupErrorPath(this.props.node.spath) ? 'fa fa-times fa-stack-1x text-danger' : 'fa fa-check fa-stack-1x text-success';
         }
@@ -78,7 +77,7 @@ class SimpleTree extends Component {
             <div>
                 {root}
                 {icon}
-                <i className={classNames(selectedObj)} onClick={this.props.onTreeNodeSelect.bind(null,this.props.node.path,this.props.node.spath)}>{this.props.node.title}</i>
+                <span className={classNames(selectedObj)} onClick={this.props.onTreeNodeSelect.bind(null,this.props.node.path,this.props.node.spath)} dangerouslySetInnerHTML={{__html:this.props.node.title}}></span>
                 <ul className='SimpleTree' style={style}>
                     {childNodes}
                 </ul>

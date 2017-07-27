@@ -47,6 +47,7 @@ class Loop extends Component {
                         return null;
                     }
                 })
+                return firstSegment;
             } else {
                 if (v.t === "segment") {
                     return <Segment node={v} key={i} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} />
@@ -69,10 +70,8 @@ class Loop extends Component {
         return (
             <div style={{ paddingLeft: '20px', paddingRight: '20px' }}>
                 <div className="panel panel-loop">
-                    <div className="panel-heading"><b>{segment.schema.description}</b><span className="glyphicon glyphicon-link pull-right pointer" onClick={this.onSegmentClick.bind(null,segment)}></span></div>
+                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null,segment)}><b>{segment.schema.description}</b></div>
                     <div className="panel-body">
-                        {firstSegment}
-                        <br></br>
                         {elements}
                     </div>
                 </div>

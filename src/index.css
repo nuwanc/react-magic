@@ -134,14 +134,19 @@
 
 .panel-segment {
     border-color:lightblue;
+    margin-bottom: 5px;
 }
 
 .panel-segment>.panel-heading {
     color: #000;
     background-color:lightblue;
     border-color:lightblue;
+    padding: 2px 5px
 }
 
+.panel-segment>.panel-body {
+    padding: 5px
+}
 .sloop {
   border: 1px solid black;
   background-color: lightgray;
@@ -160,6 +165,11 @@
     color: #000;
     background-color:lightgray;
     border-color:lightgray;
+    padding: 2px 5px
+}
+
+.panel-loop>.panel-body {
+    padding: 5px
 }
 
 .scode {
@@ -185,6 +195,22 @@
   background-color: #FED8B1;
   border-radius: 1px;
   padding: 2px;
+}
+
+.panel-composite {
+    border-color:#FED8B1;
+    margin-bottom: 5px;
+}
+
+.panel-composite>.panel-heading {
+    color: #000;
+    background-color:#FED8B1;
+    border-color:#FED8B1;
+    padding: 2px 5px
+}
+
+.panel-composite>.panel-body {
+    padding: 5px
 }
 
 .error::before {

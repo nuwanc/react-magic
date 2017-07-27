@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import * as EdiHelper from '../../utils/EdiHelper';
 import Store from '../../utils/Store';
 import * as Utilities from '../../utils/Utilities';
+import LazyLoadTree from '../tree/LazyLoadTree';
 
 class SegmentTab extends Component {
 
@@ -92,7 +93,7 @@ class SegmentTab extends Component {
                         innerTabPanels.push(
                             <TabPanel key={this.props.segment.name + (i + 1) + (i1 + 1)} className="tab-panel">
                                 <div><b>Value</b>: {innerSelect}</div>
-                                <div><b>Standard</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div>
+                                <div><b>Specification</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div>
                                 <div><b>Description</b>: {details.description} ({v.requirementType})</div>
                             </TabPanel>
                         )
@@ -113,12 +114,13 @@ class SegmentTab extends Component {
                tabPanels.push(
                 <TabPanel key={this.props.segment.name + (i + 1)} className="tab-panel">
                     <div><b>Description</b>: {details.description} ({v.requirementType})</div>
+                    <br></br>
                     {select}
                 </TabPanel>); 
             } else {
                 tabPanels.push(
                 <TabPanel key={this.props.segment.name + (i + 1)} className="tab-panel">
-                    <div><div><b>Value</b>: {select}</div><div><b>Standard</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div></div>
+                    <div><div><b>Value</b>: {select}</div><div><b>Specification</b>: Element ID {details.name.split(":")[1]} {details.dataType} {details.minLength}/{details.maxLength}</div></div>
                     <div><b>Description</b>: {details.description} ({v.requirementType})</div>
                 </TabPanel>);
             }
@@ -139,7 +141,7 @@ class SegmentTab extends Component {
                     let key = i+"_"+ci;
                     if ( ci === 0) {
                         let delimiter = Store.delimiters[1];
-                        composite.push(<span key={key}><span>{delimiter}</span><span onClick={this.onElementClick.bind(null,key)} className={ this.state.selectedElement === key ? "highlight pointer" : "pointer"}>{c}</span></span>)
+                        composite.push(<span key={key}><span>{delimiter}</span><span onClick={this.onElementClick.bind(null,i)} className={ this.state.selectedElement === i ? "highlight pointer" : "pointer"}>{c}</span></span>)
                     } else {
                         let delimiter = Store.delimiters[2];
                         composite.push(<span className="pointer" key={key}><span>{delimiter}</span>{c}</span>)
@@ -153,7 +155,9 @@ class SegmentTab extends Component {
             <div>
                 <p><b>Location</b>: {this.props.segment.path}</p>
                 <p><b>Content</b>: {this.props.segment.name}{elements}</p>
-                <Tabs selectedIndex={this.state.selectedElement} onSelect={this.selectTab}><TabList>{tabs}</TabList>{tabPanels}</Tabs>
+                <div><LazyLoadTree node={node} root={false} toggleOnLoad={true} selectedElement={this.state.selectedElement}/></div>
+                <br></br>
+                <div><Tabs selectedIndex={this.state.selectedElement} onSelect={this.selectTab}><TabList>{tabs}</TabList>{tabPanels}</Tabs></div>
             </div>
         )
     }

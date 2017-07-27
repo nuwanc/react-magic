@@ -107,7 +107,7 @@ class ErrorViewer extends Component {
         } else {
             if (Store.errors !== null) {
                 content = Store.getErrorList(1000,this.props.selectedServerNode).map((v,i)=>{
-                    return <ErrorResult key={v.location} node={v} onClickResult={this.onErrorViewerClick} selected={this.state.selected === v.location}/>
+                    return <ErrorResult key={v.location + i} node={v} onClickResult={this.onErrorViewerClick} selected={this.state.selected === v.location}/>
                 })
                 if (Store.totalErrors > ErrorViewer.DISPLAY_LIST_SIZE) {
                     message = `Showing first ${ErrorViewer.DISPLAY_LIST_SIZE} of ${Store.totalErrors} Validation Errors.`;

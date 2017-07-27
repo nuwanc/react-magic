@@ -44,9 +44,9 @@ class Segment extends Component {
             let schema = this.props.segment.schema
             let error = Store.lookupErrorSegment(this.props.segment.path);
             if (error !== null) {
-                name = <span title={schema && schema.description} className="pointer" onClick={this.onSegmentClick.bind(null, this.props.segment)}><span className="glyphicon glyphicon-remove text-danger" title={error.text}></span>{this.props.segment.name}</span>
+                name = <span title={schema && schema.description} className="pointer" onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}><span className="glyphicon glyphicon-remove text-danger" title={error.text}></span>{this.props.segment.name}</span>
             } else {
-                name = <span title={schema && schema.description} className="pointer" onClick={this.onSegmentClick.bind(null, this.props.segment)}><span style={{paddingLeft:'10px'}}>&nbsp;</span>{this.props.segment.name}</span>
+                name = <span title={schema && schema.description} className="pointer" onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}><span style={{paddingLeft:'10px'}}>&nbsp;</span>{this.props.segment.name}</span>
             }
             const elements = this.props.segment && this.props.segment.element.map((v, i) => {
 

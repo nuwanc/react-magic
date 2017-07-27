@@ -28,7 +28,7 @@ class TreePane extends Component {
                 let isa = {};
                 if (v.ISA) {
                     let element = v.ISA.e;
-                    isa.title = element[4]+'/'+element[5]+'->'+element[6]+'/'+element[7];//+', Ctrl = '+element[12];
+                    isa.title = element[4]+'/'+element[5]+'<span class="glyphicon glyphicon-arrow-right"></span>'+element[6]+'/'+element[7];//+', Ctrl = '+element[12];
                 } else {
                     isa.title = v.n;
                 }
@@ -41,7 +41,7 @@ class TreePane extends Component {
                     let gs = {};
                     if (v1.GS) {
                         let element = v1.GS.e;
-                        gs.title = element[1] +'->' + element[2];// + ', Ctrl='+ element[5]
+                        gs.title = element[1] +'<span class="glyphicon glyphicon-arrow-right"></span>' + element[2];// + ', Ctrl='+ element[5]
                     } else {
                         gs.title = v1.n; 
                     }

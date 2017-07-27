@@ -151,6 +151,8 @@ class LazyLoadTree extends Component {
                     if ( this.props.selectedElement !== null && typeof this.props.selectedElement === "string") {
                         let keys = this.props.selectedElement.split("_");
                         selectedObj["highlight"] = keys[0] == this.props.node.position - 1
+                    } else {
+                        selectedObj["highlight"] = this.props.selectedElement == this.props.node.position - 1
                     }
                     info = <span className={classNames(selectedObj)} >&nbsp;<b>{this.props.node.description || this.props.node.name}</b> {this.props.node.requirementType ? <span>{this.props.node.requirementType} - {this.props.node.maxOccurs == -1 ? 'Unbound' : this.props.node.maxOccurs}</span> : <span> </span>} </span>
                 } else if (name.startsWith("loop")) {
