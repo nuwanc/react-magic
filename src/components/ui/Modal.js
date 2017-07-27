@@ -73,7 +73,7 @@ class Modal extends Component {
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={e => this.close(e)}><span aria-hidden="true">&times;</span></button>
                             <h4 className="modal-title">{title}</h4>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body" style={{maxHeight:'80vh',  overflowY : 'auto'}}>
                             {content}
                         </div>
                         <div className="modal-footer">
