@@ -22,7 +22,7 @@ class Segment extends Component {
                 let details = EdiHelper.getSchemaDetails(segment.schema.element[i].name);
                 if (details.name.startsWith("code")) {
                     if (Utilities.isNotEmptyArrayOrString(details.value)) {
-                        let code = {};
+                        let code = null;
                         for (let i = 0, length = details.value.length; i < length; i++) {
                             let el = details.value[i];
                             if (el.value === v) {
@@ -30,7 +30,12 @@ class Segment extends Component {
                                 break;
                             }
                         }
-                        return <div key={i}><span><b>{details.description}</b></span><span>: </span><span title={code.value}>{code.description}</span></div>
+                        if (code === null) {
+                            return <div key={i}><span><b>{details.description}</b></span><span>: </span><span style={{color:'red'}}>{v}</span></div>
+                        } else {
+                            return <div key={i}><span><b>{details.description}</b></span><span>: </span><span title={code.value}>{code.description}</span></div>
+                        }
+                        
                     } else {
                         return <div key={i}><span><b>{details.description}</b></span><span>: </span><span>{v}</span></div>
                     }
@@ -80,7 +85,7 @@ class Segment extends Component {
         return (
             <div style={{ paddingLeft: '20px', paddingRight: '20px' }}>
                 <div className="panel panel-segment">
-                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null, segment)}><b>{segment.schema.description}</b></div>
+                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null, segment)}><b>{segment.name} - {segment.schema.description}</b></div>
                     <div className="panel-body">
                         {elements}
                     </div>

@@ -23,7 +23,7 @@ class Transaction extends Component {
                     return <Segment node={v} key={i} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick}/>
             }
         })
-        return <div>{content}</div>
+        return <div className="panel-group">{content}</div>
     }
 }
 

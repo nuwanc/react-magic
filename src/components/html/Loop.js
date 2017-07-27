@@ -70,7 +70,7 @@ class Loop extends Component {
         return (
             <div style={{ paddingLeft: '20px', paddingRight: '20px' }}>
                 <div className="panel panel-loop">
-                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null,segment)}><b>{segment.schema.description}</b></div>
+                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null,segment)}><b>{segment.name} - {segment.schema.description}</b></div>
                     <div className="panel-body">
                         {elements}
                     </div>
