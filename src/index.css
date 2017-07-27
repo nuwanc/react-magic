@@ -141,11 +141,15 @@
     color: #000;
     background-color:lightblue;
     border-color:lightblue;
-    padding: 2px 5px
+    padding: 2px 5px;
+}
+
+.panel-segment>.panel-heading:hover {
+    text-decoration: underline;
 }
 
 .panel-segment>.panel-body {
-    padding: 5px
+    padding: 5px 15px;
 }
 .sloop {
   border: 1px solid black;
@@ -165,11 +169,15 @@
     color: #000;
     background-color:lightgray;
     border-color:lightgray;
-    padding: 2px 5px
+    padding: 2px 5px;
+}
+
+.panel-loop>.panel-heading:hover {
+    text-decoration: underline;
 }
 
 .panel-loop>.panel-body {
-    padding: 5px
+    padding: 5px 15px;
 }
 
 .scode {
@@ -210,7 +218,7 @@
 }
 
 .panel-composite>.panel-body {
-    padding: 5px
+    padding: 5px 15px;
 }
 
 .error::before {
