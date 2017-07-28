@@ -60,14 +60,14 @@ class SimpleTree extends Component {
         if (this.props.validate === false) {
             error = '';
         } else {
-            error = Store.lookupErrorPath(this.props.node.spath) ? 'fa fa-times fa-stack-1x text-danger' : 'fa fa-check fa-stack-1x text-success';
+            error = Store.lookupErrorPath(this.props.node.spath) ? 'glyphicon glyphicon-remove glyphicon-stack-1x text-danger' : 'glyphicon glyphicon-ok glyphicon-stack-1x text-success';
         }
         
         let root;
         let icon;
         if (this.props.node.title) {
             root = <span onClick={this.toggle} className={classNames(classObj)}></span>;
-            icon = <span className="fa-stack"><i className={this.props.node.icon}></i><i className={error}></i></span>;
+            icon = <span className="glyphicon-stack"><i className={this.props.node.icon}></i><i className={error}></i></span>;
         } else {
             root = '';
             icon = '';

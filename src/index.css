@@ -233,27 +233,6 @@
     overflow-y : auto;
 }
 
-.table {
-	overflow: auto !important;
-    border: 0px solid #000 !important;
-	border-color: #000;
-	background-color: #FFF;
-	border-collapse: collapse !important;
-}
-
-.table th,.table td {
-	border: 1px solid #A9A9A9 !important;
-	background-color: #FFF;
-	padding:4px !important;
-	font-size: 12px !important;
-}
-
-.table th {
-	border: 1px solid #000;
-	background-color: #DDD;
-	font-size: 9pt !important;
-}
-
 .segment {
 	margin-bottom: 5px;
 	white-space: nowrap;
@@ -292,4 +271,33 @@
     color: #000 !important;
     margin-bottom: 12px !important;
     margin-top: 12px !important;
+}
+
+.glyphicon-stack {
+position: relative;
+display: inline-block;
+width: 2em;
+height: 2em;
+line-height: 2em;
+vertical-align: middle;
+}
+
+.glyphicon-circle{
+position: relative;
+border-radius: 50%;
+width: 100%;
+height: auto;
+padding-top: 100%;
+background: black;
+}
+
+.glyphicon-stack-1x {
+line-height: inherit;
+}
+
+.glyphicon-stack-1x, .glyphicon-stack-2x {
+position: absolute;
+left: 0;
+width: 100%;
+text-align: center;
 }

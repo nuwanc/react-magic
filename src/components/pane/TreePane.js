@@ -34,7 +34,7 @@ class TreePane extends Component {
                 }
                 isa.path = v.j;
                 isa.spath = v.p;
-                isa.icon = "fa fa-envelope-o fa-stack-1x";
+                isa.icon = "glyphicon glyphicon-envelope glyphicon-stack-1x";
                 isa.childNodes = [];
 
                 v["group"].forEach((v1,i1)=>{
@@ -47,7 +47,7 @@ class TreePane extends Component {
                     }
                     gs.path = v1.j;
                     gs.spath = v1.p;
-                    gs.icon = "fa fa-folder-o fa-stack-1x";
+                    gs.icon = "glyphicon glyphicon-folder-open glyphicon-stack-1x";
                     gs.childNodes = [];
 
                     v1["transaction"].forEach((v2,i2)=>{
@@ -60,7 +60,7 @@ class TreePane extends Component {
                         }
                         st.path = v2.j;
                         st.spath = v2.p;
-                        st.icon = "fa fa-file-o fa-stack-1x";
+                        st.icon = "glyphicon glyphicon-file glyphicon-stack-1x";
                         gs.childNodes.push(st);
                         count ++;
                     })

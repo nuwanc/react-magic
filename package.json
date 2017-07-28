@@ -7,7 +7,6 @@
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
-    "font-awesome": "^4.7.0",
     "jspath": "^0.3.4",
     "normalize.css": "^7.0.0",
     "react": "^15.5.4",
@@ -18,6 +17,7 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
+    "find-unused-css": "^0.8.1",
     "react-scripts": "1.0.10"
   },
   "scripts": {
@@ -26,6 +26,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "json-server": "json-server --watch db/db1.json --port 3004 --routes db/routes.json",
-    "start-dev": "concurrently --kill-others \"npm run json-server\" \"npm run start\""
+    "start-dev": "concurrently --kill-others \"npm run json-server\" \"npm run start\"",
+    "unused-css": "find-unused-css"
   }
 }

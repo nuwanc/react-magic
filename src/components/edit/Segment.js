@@ -100,7 +100,7 @@ class Segment extends Component {
                         title = title + '\n' + codeDesc
                     }
                     let delimiter = Store.delimiters[1];
-                    return <span key={i}><span>{delimiter}</span><span title={title} className="pointer" onClick={this.onElementClick.bind(null,this.props.segment,i)}>{v}</span></span>
+                    return <span key={i}><span>{delimiter}</span><span title={title} className="pointer" >{v}</span></span>
                 } else {
                     //composite
                     let composite = [];
@@ -160,10 +160,10 @@ class Segment extends Component {
 
                         if (ci === 0) {
                             let delimiter = Store.delimiters[1];
-                            composite.push(<span key={key}><span>{delimiter}</span><span title={title} className="pointer" onClick={this.onElementClick.bind(null,this.props.segment,i,ci)}>{c}</span></span>);
+                            composite.push(<span key={key}><span>{delimiter}</span><span title={title} className="pointer" >{c}</span></span>);
                         } else {
                             let delimiter = Store.delimiters[2];
-                            composite.push(<span key={key}><span>{delimiter}</span><span title={title} className="pointer" onClick={this.onElementClick.bind(null,this.props.segment,i,ci)}>{c}</span></span>);
+                            composite.push(<span key={key}><span>{delimiter}</span><span title={title} className="pointer" >{c}</span></span>);
                         }
                     })
 
