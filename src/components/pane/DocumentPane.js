@@ -38,12 +38,12 @@ class DocumentPane extends Component {
             <Tabs selectedIndex={this.state.tabIndex} onSelect={this.selectTab}>
                 <TabList>
                     <Tab><b>Html</b></Tab>
-                    <Tab><b>Edit</b></Tab>
+                    <Tab><b>Message</b></Tab>
                     {/*<Tab>Text</Tab>*/}
                 </TabList>
 
                 <TabPanel forceRender={true}>
-                    <HTMLViewer docType={this.state.tabIndex} selectedNode={this.props.selectedNode} selectedSegment={this.props.selectedSegment} openModal={this.props.openModal} viewerHeight={this.props.viewerHeight} validate={this.props.validate} onSegmentClick={this.props.onSegmentClick} schemaLoading={this.props.schemaLoading} onCtrlNumberClick={this.props.onCtrlNumberClick}/>
+                    <HTMLViewer docType={this.state.tabIndex} selectedNode={this.props.selectedNode} selectedServerNode={this.props.selectedServerNode} selectedSegment={this.props.selectedSegment} openModal={this.props.openModal} viewerHeight={this.props.viewerHeight} validate={this.props.validate} onSegmentClick={this.props.onSegmentClick} schemaLoading={this.props.schemaLoading} onCtrlNumberClick={this.props.onCtrlNumberClick}/>
                 </TabPanel>
                 <TabPanel forceRender={true}>
                    <EditViewer docType={this.state.tabIndex} selectedNode={this.props.selectedNode} selectedServerNode={this.props.selectedServerNode} selectedSegment={this.props.selectedSegment} openModal={this.props.openModal} viewerHeight={this.props.viewerHeight} validate={this.props.validate} onSegmentClick={this.props.onSegmentClick} schemaLoading={this.props.schemaLoading} scrollIntoView={this.props.scrollIntoView}/>

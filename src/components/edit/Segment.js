@@ -12,9 +12,9 @@ class Segment extends Component {
         this.onElementClick = this.onElementClick.bind(this);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    /*shouldComponentUpdate(nextProps, nextState) {
         return this.props.selectedSegment !== nextProps.selectedSegment
-    }
+    }*/
 
     componentDidUpdate() {
         if (this.props.selectedSegment && this.props.scrollIntoView === true) {
@@ -29,8 +29,8 @@ class Segment extends Component {
     }
 
     onSegmentClick(segment) {
-        this.props.openModal(true, { schema: true, title: 'Schema', segment: segment });
-        this.props.onSegmentClick(segment.path,1);
+        //this.props.openModal(true, { schema: true, title: 'Schema', segment: segment });
+        //this.props.onSegmentClick(segment.path,1);
     }
 
     onElementClick(segment,index,compositeIndex) {
@@ -40,13 +40,15 @@ class Segment extends Component {
 
     render() {
         if (this.props.type === 1) {
-            let name;
+            let name,icon;
             let schema = this.props.segment.schema
             let error = Store.lookupErrorSegment(this.props.segment.path);
             if (error !== null) {
-                name = <span title={schema && schema.description} className="pointer" onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}><span className="glyphicon glyphicon-remove text-danger" title={error.text}></span>{this.props.segment.name}</span>
+                icon = <span className="glyphicon glyphicon-remove text-danger pointer" title={error.text} style={{marginRight:'10px'}} onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}></span>
+                name = <span title={schema && schema.description} className="pointer">{this.props.segment.name}</span>
             } else {
-                name = <span title={schema && schema.description} className="pointer" onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}><span style={{paddingLeft:'10px'}}>&nbsp;</span>{this.props.segment.name}</span>
+                icon = <span className="glyphicon glyphicon-edit pointer" style={{marginRight:'10px'}} onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}></span>
+                name = <span title={schema && schema.description} className="pointer">{this.props.segment.name}</span>
             }
             const elements = this.props.segment && this.props.segment.element.map((v, i) => {
 
@@ -171,9 +173,9 @@ class Segment extends Component {
 
             })
             if (this.props.selectedSegment) {
-                return <div className="edit-segment"><span className="highlight">{name}{elements}</span></div>
+                return <div className="edit-segment">{icon}<span className="highlight">{name}{elements}</span></div>
             } else {
-                return <div className="edit-segment">{name}{elements}</div>
+                return <div className="edit-segment">{icon}{name}{elements}</div>
             }
 
         } else {

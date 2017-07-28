@@ -155,9 +155,9 @@ class SegmentTab extends Component {
             <div>
                 <p><b>Location</b>: {this.props.segment.path}</p>
                 <p><b>Content</b>: {this.props.segment.name}{elements}</p>
-                <div><LazyLoadTree node={node} root={false} toggleOnLoad={true} selectedElement={this.state.selectedElement} onEdit={true}/></div>
-                <br></br>
                 <div><Tabs selectedIndex={this.state.selectedElement} onSelect={this.selectTab}><TabList>{tabs}</TabList>{tabPanels}</Tabs></div>
+                <p>&nbsp;</p>
+                <div><LazyLoadTree node={node} root={false} toggleOnLoad={true} selectedElement={this.state.selectedElement} onEdit={true}/></div>
             </div>
         )
     }

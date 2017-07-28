@@ -20,7 +20,7 @@ class LazyLoadTree extends Component {
         if (!this.state.loaded) {
             if (this.props.node.element) {
                 childNodes = this.props.node.element.map((node, index) => {
-                    return <li key={index}><LazyLoadTree node={node} root={false} openModal={this.props.openModal} selectedElement={this.props.selectedElement} /></li>
+                    return <li key={index}><LazyLoadTree node={node} root={false} openModal={this.props.openModal} selectedElement={this.props.selectedElement} onEdit={this.props.onEdit}/></li>
                 });
                 this.setState(() => {
                     return {
@@ -105,11 +105,11 @@ class LazyLoadTree extends Component {
         if (this.props.root) {
             if (this.props.node.transaction) {
                 childNodes = this.props.node.transaction.map((node, index) => {
-                    return <li key={index}><LazyLoadTree node={node} root={false} openModal={this.props.openModal} selectedElement={this.props.selectedElement} /></li>
+                    return <li key={index}><LazyLoadTree node={node} root={false} openModal={this.props.openModal} selectedElement={this.props.selectedElement} onEdit={this.props.onEdit}/></li>
                 });
             } else if (this.props.node.element) {
                 childNodes = this.props.node.element.map((node, index) => {
-                    return <li key={index}><LazyLoadTree node={node} root={false} openModal={this.props.openModal} selectedElement={this.props.selectedElement} /></li>
+                    return <li key={index}><LazyLoadTree node={node} root={false} openModal={this.props.openModal} selectedElement={this.props.selectedElement} onEdit={this.props.onEdit}/></li>
                 });
             }
             style = { display: "block" };

@@ -24,6 +24,10 @@ class HTMLViewer extends Component {
         window.removeEventListener("resize", this.updateDimensions);
     }
 
+    /*shouldComponentUpdate(nextProps, nextState) {
+        return this.props.selectedNode !== nextProps.selectedNode || this.props.docType !== nextProps.docType
+    }*/
+
     updateDimensions() {
         this.setState(() => {
             return {
@@ -46,6 +50,7 @@ class HTMLViewer extends Component {
             if (this.props.selectedNode && this.props.docType === 0) {
                 json = JSPath.apply(this.props.selectedNode, Store.message);
                 let length = this.props.selectedNode.split('.').length;
+                Store.lookupErrorList(this.props.selectedServerNode);
                 switch (length) {
                     case 2:
                         let isa = json.ISA || json.UNB;

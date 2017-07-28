@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as EdiHelper from '../../utils/EdiHelper';
 import * as Utilities from '../../utils/Utilities';
+import Store from '../../utils/Store';
 
 class Segment extends Component {
 
@@ -10,12 +11,18 @@ class Segment extends Component {
     }
 
     onSegmentClick(segment) {
-        this.props.openModal(true, { schema: true, title: 'Schema', segment: segment });
+        //this.props.openModal(true, { schema: true, title: 'Schema', segment: segment });
+        this.props.openModal(true, { segment : segment , index : 0, cIndex : 0 });
         this.props.onSegmentClick(segment.path, 0);
     }
 
     render() {
-        let segment = EdiHelper.processSegment(this.props.node, false);
+
+        let isHeader = false;
+        if (this.props.isHeader) {
+            isHeader = true
+        }
+        let segment = EdiHelper.processSegment(this.props.node, isHeader);
 
         let elements = segment.element.map((v, i) => {
             if (Utilities.isNotEmptyArrayOrString(segment.schema) && Utilities.isNotEmptyArrayOrString(segment.schema.element) && Utilities.isNotEmptyArrayOrString(v)) {
@@ -82,12 +89,15 @@ class Segment extends Component {
             }
         })
 
+        let error = Store.lookupErrorSegment(segment.path);
+
         return (
             <div style={{ paddingLeft: '20px', paddingRight: '20px' }}>
                 <div className="panel panel-segment">
-                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null, segment)}><b>{segment.name} - {segment.schema.description}</b></div>
+                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null, segment)}>{error !== null ? <span className="glyphicon glyphicon-remove text-danger" title={error.text}></span> : null}<b>{segment.name} - {segment.schema.description}</b></div>
                     <div className="panel-body">
                         {elements}
+                        {this.props.children}
                     </div>
                 </div>
             </div>

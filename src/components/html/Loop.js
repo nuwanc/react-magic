@@ -3,6 +3,7 @@ import Segment from "./Segment";
 import SegmentList from './SegmentList';
 import * as EdiHelper from '../../utils/EdiHelper';
 import * as Utilities from '../../utils/Utilities';
+import Store from '../../utils/Store';
 
 class Loop extends Component {
     constructor(props) {
@@ -11,7 +12,8 @@ class Loop extends Component {
     }
 
     onSegmentClick(segment) {
-        this.props.openModal(true, { schema: true, title: 'Schema', segment: segment });
+        //this.props.openModal(true, { schema: true, title: 'Schema', segment: segment });
+        this.props.openModal(true, { segment : segment , index : 0, cIndex : 0 });
         this.props.onSegmentClick(segment.path, 0);
     }
 
@@ -67,10 +69,12 @@ class Loop extends Component {
 
         })
 
+        let error = Store.lookupErrorSegment(segment.path);
+
         return (
             <div style={{ paddingLeft: '20px', paddingRight: '20px' }}>
                 <div className="panel panel-loop">
-                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null,segment)}><b>{segment.name} - {segment.schema.description}</b></div>
+                    <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null,segment)}>{error !== null ? <span className="glyphicon glyphicon-remove text-danger" title={error.text}></span> : null}<b>{segment.name} - {segment.schema.description}</b></div>
                     <div className="panel-body">
                         {elements}
                     </div>

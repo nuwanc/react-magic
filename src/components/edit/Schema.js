@@ -67,7 +67,7 @@ class Schema extends Component {
             <div className="schema">
                 <p><b>Location</b>: {this.props.segment.path}</p>
                 <p><b>Content</b>: {this.props.segment.name}{elements}</p>
-                <div><LazyLoadTree node={node} root={false} toggleOnLoad={true} selectedElement={this.state.selectedElement}/></div>
+                <div><LazyLoadTree node={node} root={false} toggleOnLoad={true} selectedElement={this.state.selectedElement} onEdit={true}/></div>
             </div>
         );
     }
