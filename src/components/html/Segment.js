@@ -92,7 +92,7 @@ class Segment extends Component {
         let error = Store.lookupErrorSegment(segment.path);
 
         return (
-            <div style={{ paddingLeft: '20px', paddingRight: '20px' }}>
+            <div style={{ paddingLeft: '20px', paddingRight: '20px',outline:0 }} tabIndex={ this.props.tabIndex === 0 ? 0 : -1 } >
                 <div className="panel panel-segment">
                     <div className="panel-heading pointer" onClick={this.onSegmentClick.bind(null, segment)}>{error !== null ? <span className="glyphicon glyphicon-remove text-danger" title={error.text}></span> : null}<b>{segment.name} - {segment.schema.description}</b></div>
                     <div className="panel-body">

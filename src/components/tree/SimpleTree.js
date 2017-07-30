@@ -12,6 +12,7 @@ class SimpleTree extends Component {
             visible: true
         };
         this.toggle = this.toggle.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -26,6 +27,12 @@ class SimpleTree extends Component {
 
     toggle() {
         this.setState({ visible: !this.state.visible });
+    }
+
+    handleKeyPress(event){
+        if (event.key === 'Enter') {
+            this.props.onTreeNodeSelect(this.props.node.path,this.props.node.spath);
+        }
     }
 
     render() {
@@ -77,7 +84,7 @@ class SimpleTree extends Component {
             <div>
                 {root}
                 {icon}
-                <span className={classNames(selectedObj)} onClick={this.props.onTreeNodeSelect.bind(null,this.props.node.path,this.props.node.spath)} dangerouslySetInnerHTML={{__html:this.props.node.title}}></span>
+                <span  className={classNames(selectedObj)} onKeyPress={this.handleKeyPress} onClick={this.props.onTreeNodeSelect.bind(null,this.props.node.path,this.props.node.spath)} dangerouslySetInnerHTML={{__html:this.props.node.title}}></span>
                 <ul className='SimpleTree' style={style}>
                     {childNodes}
                 </ul>

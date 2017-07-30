@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as EdiHelper from '../../utils/EdiHelper';
-import * as Utilities from '../../utils/Utilities';
 import Segment from './Segment';
 
 class Interchange extends Component {
@@ -45,7 +44,7 @@ class Interchange extends Component {
         }
         return (
             <div>
-            <Segment node={this.props.segment} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} isHeader={true}>
+            <Segment tabIndex={0} node={this.props.segment} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} isHeader={true}>
             <table className="table">
                 <thead>
                     <tr>{headers}</tr>

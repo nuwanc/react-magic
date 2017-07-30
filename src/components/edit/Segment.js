@@ -10,6 +10,7 @@ class Segment extends Component {
         super(props);
         this.onSegmentClick = this.onSegmentClick.bind(this);
         this.onElementClick = this.onElementClick.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     /*shouldComponentUpdate(nextProps, nextState) {
@@ -18,24 +19,58 @@ class Segment extends Component {
 
     componentDidUpdate() {
         if (this.props.selectedSegment && this.props.scrollIntoView === true) {
+            ReactDOM.findDOMNode(this).tabIndex = 0;
             ReactDOM.findDOMNode(this).scrollIntoView(true);
+        } else if (this.props.selectedSegment) {
+            ReactDOM.findDOMNode(this).tabIndex = 0;
+        } else {
+            if (this.props.tabIndex === 0) {
+                ReactDOM.findDOMNode(this).tabIndex = 0;
+            } else {
+                ReactDOM.findDOMNode(this).tabIndex = -1;
+            }
+            
         }
+        
     }
 
     componentDidMount() {
         if (this.props.selectedSegment && this.props.scrollIntoView === true) {
+            ReactDOM.findDOMNode(this).tabIndex = 0;
             ReactDOM.findDOMNode(this).scrollIntoView(true);
+        } else if (this.props.selectedSegment) {
+            ReactDOM.findDOMNode(this).tabIndex = 0;
+        } else {
+            if (this.props.tabIndex === 0) {
+                ReactDOM.findDOMNode(this).tabIndex = 0;
+            } else {
+                ReactDOM.findDOMNode(this).tabIndex = -1;
+            }
         }
     }
 
     onSegmentClick(segment) {
         //this.props.openModal(true, { schema: true, title: 'Schema', segment: segment });
-        //this.props.onSegmentClick(segment.path,1);
+        this.props.onSegmentClick(segment.path,1);
+        ReactDOM.findDOMNode(this).tabIndex = 0;
     }
 
     onElementClick(segment,index,compositeIndex) {
         this.props.openModal(true, { segment : segment , index : index, cIndex : compositeIndex });
         this.props.onSegmentClick(segment.path,1);
+        ReactDOM.findDOMNode(this).tabIndex = 0;
+    }
+
+    handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            this.props.openModal(true, { segment : this.props.segment , index : 0, cIndex : 0 });
+        } else if (event.keyCode === 40) {
+            //console.log('Key Down');
+            //console.log(ReactDOM.findDOMNode(this));
+        } else if (event.keyCode === 38) {
+            //console.log('Key Up');
+            //console.log(ReactDOM.findDOMNode(this));
+        }
     }
 
     render() {
@@ -44,11 +79,11 @@ class Segment extends Component {
             let schema = this.props.segment.schema
             let error = Store.lookupErrorSegment(this.props.segment.path);
             if (error !== null) {
-                icon = <span className="glyphicon glyphicon-remove text-danger pointer" title={error.text} style={{marginRight:'10px'}} onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}></span>
-                name = <span title={schema && schema.description} className="pointer">{this.props.segment.name}</span>
+                icon = <span><span className="glyphicon glyphicon-remove text-danger" title={error.text}></span><span className="glyphicon glyphicon-edit pointer" style={{marginRight:'10px'}} onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}></span></span>
+                name = <span title={schema && schema.description}>{this.props.segment.name}</span>
             } else {
-                icon = <span className="glyphicon glyphicon-edit pointer" style={{marginRight:'10px'}} onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}></span>
-                name = <span title={schema && schema.description} className="pointer">{this.props.segment.name}</span>
+                icon = <span className="glyphicon glyphicon-edit pointer" style={{marginLeft:'15px', marginRight:'10px'}} onClick={this.onElementClick.bind(null, this.props.segment,0,-1)}></span>
+                name = <span title={schema && schema.description}>{this.props.segment.name}</span>
             }
             const elements = this.props.segment && this.props.segment.element.map((v, i) => {
 
@@ -100,7 +135,7 @@ class Segment extends Component {
                         title = title + '\n' + codeDesc
                     }
                     let delimiter = Store.delimiters[1];
-                    return <span key={i}><span>{delimiter}</span><span title={title} className="pointer" >{v}</span></span>
+                    return <span key={i}><span>{delimiter}</span><span title={title}>{v}</span></span>
                 } else {
                     //composite
                     let composite = [];
@@ -160,10 +195,10 @@ class Segment extends Component {
 
                         if (ci === 0) {
                             let delimiter = Store.delimiters[1];
-                            composite.push(<span key={key}><span>{delimiter}</span><span title={title} className="pointer" >{c}</span></span>);
+                            composite.push(<span key={key}><span>{delimiter}</span><span title={title} >{c}</span></span>);
                         } else {
                             let delimiter = Store.delimiters[2];
-                            composite.push(<span key={key}><span>{delimiter}</span><span title={title} className="pointer" >{c}</span></span>);
+                            composite.push(<span key={key}><span>{delimiter}</span><span title={title} >{c}</span></span>);
                         }
                     })
 
@@ -173,9 +208,9 @@ class Segment extends Component {
 
             })
             if (this.props.selectedSegment) {
-                return <div className="edit-segment">{icon}<span className="highlight">{name}{elements}</span></div>
+                return <div className="edit-segment" onKeyPress={this.handleKeyPress} onKeyDown={this.handleKeyPress}>{icon}<span className="highlight" onClick={this.onSegmentClick.bind(null,this.props.segment)}>{name}{elements}</span></div>
             } else {
-                return <div className="edit-segment">{icon}{name}{elements}</div>
+                return <div className="edit-segment" onKeyPress={this.handleKeyPress} onKeyDown={this.handleKeyPress}>{icon}<span onClick={this.onSegmentClick.bind(null,this.props.segment)}>{name}{elements}</span></div>
             }
 
         } else {

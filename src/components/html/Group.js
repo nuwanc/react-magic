@@ -45,7 +45,7 @@ class Group extends Component {
         }
         return (
             <div>
-            <Segment node={this.props.segment} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} isHeader={true}>
+            <Segment tabIndex={0} node={this.props.segment} openModal={this.props.openModal} onSegmentClick={this.props.onSegmentClick} isHeader={true}>
             <table className="table">
                 <thead>
                     <tr>{headers}</tr>
