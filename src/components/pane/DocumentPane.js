@@ -46,7 +46,7 @@ class DocumentPane extends Component {
                     <HTMLViewer docType={this.state.tabIndex} selectedNode={this.props.selectedNode} selectedServerNode={this.props.selectedServerNode} selectedSegment={this.props.selectedSegment} openModal={this.props.openModal} viewerHeight={this.props.viewerHeight} validate={this.props.validate} onSegmentClick={this.props.onSegmentClick} schemaLoading={this.props.schemaLoading} onCtrlNumberClick={this.props.onCtrlNumberClick}/>
                 </TabPanel>
                 <TabPanel forceRender={true}>
-                   <EditViewer docType={this.state.tabIndex} selectedNode={this.props.selectedNode} selectedServerNode={this.props.selectedServerNode} selectedSegment={this.props.selectedSegment} openModal={this.props.openModal} viewerHeight={this.props.viewerHeight} validate={this.props.validate} onSegmentClick={this.props.onSegmentClick} schemaLoading={this.props.schemaLoading} scrollIntoView={this.props.scrollIntoView}/>
+                   <EditViewer docType={this.state.tabIndex} selectedNode={this.props.selectedNode} selectedServerNode={this.props.selectedServerNode} selectedSegment={this.props.selectedSegment} openModal={this.props.openModal} viewerHeight={this.props.viewerHeight} validate={this.props.validate} onSegmentClick={this.props.onSegmentClick} schemaLoading={this.props.schemaLoading} scrollIntoView={this.props.scrollIntoView} fromFindOrError={this.props.fromFindOrError}/>
                 </TabPanel>
                 {/*<TabPanel forceRender={true}>
                     <TextViewer docType={this.state.tabIndex} selectedNode={this.props.selectedNode} selectedSegment={this.props.selectedSegment} openModal={this.props.openModal} viewerHeight={this.props.viewerHeight}/>

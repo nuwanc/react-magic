@@ -20,16 +20,17 @@ class Segment extends Component {
     componentDidUpdate() {
         if (this.props.selectedSegment && this.props.scrollIntoView === true) {
             ReactDOM.findDOMNode(this).tabIndex = 0;
+            ReactDOM.findDOMNode(this).focus();
             ReactDOM.findDOMNode(this).scrollIntoView(true);
         } else if (this.props.selectedSegment) {
             ReactDOM.findDOMNode(this).tabIndex = 0;
+            ReactDOM.findDOMNode(this).focus();
+            //ReactDOM.findDOMNode(this).scrollIntoView(false);
         } else {
-            if (this.props.tabIndex === 0) {
-                ReactDOM.findDOMNode(this).tabIndex = 0;
-            } else {
-                ReactDOM.findDOMNode(this).tabIndex = -1;
-            }
-            
+            ReactDOM.findDOMNode(this).tabIndex = -1;
+        }
+        if (this.props.resetTabIndex) {
+             ReactDOM.findDOMNode(this).tabIndex = -1;
         }
         
     }
@@ -37,15 +38,17 @@ class Segment extends Component {
     componentDidMount() {
         if (this.props.selectedSegment && this.props.scrollIntoView === true) {
             ReactDOM.findDOMNode(this).tabIndex = 0;
+            ReactDOM.findDOMNode(this).focus();
             ReactDOM.findDOMNode(this).scrollIntoView(true);
         } else if (this.props.selectedSegment) {
             ReactDOM.findDOMNode(this).tabIndex = 0;
+            ReactDOM.findDOMNode(this).focus();
+            //ReactDOM.findDOMNode(this).scrollIntoView(false);
         } else {
-            if (this.props.tabIndex === 0) {
-                ReactDOM.findDOMNode(this).tabIndex = 0;
-            } else {
-                ReactDOM.findDOMNode(this).tabIndex = -1;
-            }
+            ReactDOM.findDOMNode(this).tabIndex = -1;
+        }
+        if (this.props.resetTabIndex) {
+             ReactDOM.findDOMNode(this).tabIndex = -1;
         }
     }
 
@@ -61,15 +64,14 @@ class Segment extends Component {
         ReactDOM.findDOMNode(this).tabIndex = 0;
     }
 
-    handleKeyPress(event) {
+    handleKeyPress(event,segment) {
         if (event.key === 'Enter') {
-            this.props.openModal(true, { segment : this.props.segment , index : 0, cIndex : 0 });
+            this.props.openModal(true, { segment : segment , index : 0, cIndex : 0 });
+            this.props.onSegmentClick(segment.path,1);
         } else if (event.keyCode === 40) {
-            //console.log('Key Down');
-            //console.log(ReactDOM.findDOMNode(this));
+            this.props.onKeyMove(event.keyCode,this.props.segment.path);
         } else if (event.keyCode === 38) {
-            //console.log('Key Up');
-            //console.log(ReactDOM.findDOMNode(this));
+            this.props.onKeyMove(event.keyCode,this.props.segment.path);
         }
     }
 
@@ -208,9 +210,9 @@ class Segment extends Component {
 
             })
             if (this.props.selectedSegment) {
-                return <div className="edit-segment" onKeyPress={this.handleKeyPress} onKeyDown={this.handleKeyPress}>{icon}<span className="highlight" onClick={this.onSegmentClick.bind(null,this.props.segment)}>{name}{elements}</span></div>
+                return <div className="edit-segment" onKeyPress={(e)=>{this.handleKeyPress(e,this.props.segment)}} onKeyDown={(e)=>{this.handleKeyPress(e,this.props.segment)}}>{icon}<span className="highlight" onClick={this.onSegmentClick.bind(null,this.props.segment)}>{name}{elements}</span></div>
             } else {
-                return <div className="edit-segment" onKeyPress={this.handleKeyPress} onKeyDown={this.handleKeyPress}>{icon}<span onClick={this.onSegmentClick.bind(null,this.props.segment)}>{name}{elements}</span></div>
+                return <div className="edit-segment" onKeyPress={(e)=>{this.handleKeyPress(e,this.props.segment)}} onKeyDown={(e)=>{this.handleKeyPress(e,this.props.segment)}}>{icon}<span onClick={this.onSegmentClick.bind(null,this.props.segment)}>{name}{elements}</span></div>
             }
 
         } else {
